@@ -20,26 +20,26 @@
 // Print a breakdown for each person
 
 //Creating a variable for DINER (diner)
-var diner = function (name, dishes){
-	this.name = name;
-	this.dishes = dishes;
+var diner = function (person, foods){
+	this.person = person;
+	this.foods = foods;
 };
 //Creating a variable for DISHES (dish)
-var dish = function(name, price) {
-	this.name = name;
-	this.price = price;
+var dish = function(person, cost_price) {
+	this.person = person;
+	this.cost_price = cost_price;
 };
+//Creating a variables for each food dish 
+var Pho = new dish('Pho', 10);
+var EggRolls = new dish('EggRolls', 4);
+var Noodles = new dish('Noodles', 12);
+var Dumplings = new dish('Dumplings', 6);
+var Stirfry = new dish('Stirfry', 10);
+var CurrySoup = new dish('CurrySoup', 8);
 
-var Pho = new dish('Pho', 15);
-var EggRolls = new dish('EggRolls', 10);
-var Noodles = new dish('Noodles', 9);
-var Dumplings = new dish('Dumplings', 13);
-var Cheese = new dish('Cheese', 8);
-var Calamari = new dish('Calamari', 10);
-
-
-var Hieu = new diner('Hieu', [Steak, Calamari]);
-var Hanh = new diner('Hanh', [Fish, Ceviche]);
-var Hong = new diner('Hong', [Cheese, Pasta]);
+//Creating a variable names with a new order from the diner variable from above.
+var Hieu = new diner('Hieu', [Pho, EggRolls]);
+var Hanh = new diner('Hanh', [Noodles, Dumplings]);
+var Hong = new diner('Hong', [Stirfry, CurrySoup]);
 
 
