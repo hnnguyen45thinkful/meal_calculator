@@ -42,4 +42,10 @@ var Hieu = new diner('Hieu', [Pho, EggRolls]);
 var Hanh = new diner('Hanh', [Noodles, Dumplings]);
 var Hong = new diner('Hong', [Stirfry, CurrySoup]);
 
-
+//Create a variable for meal with the parameters in the function tax, tip and diners into calculations.
+var meal = function(tax,tip,diners){
+ this.diners = diners;
+ this.tip = tip;
+ this.tax = tax;
+ this.total = 0;
+ this.subtotal = 0;
