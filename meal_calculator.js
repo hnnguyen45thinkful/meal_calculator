@@ -19,16 +19,34 @@
 // Print the total tip for the waitress
 // Print a breakdown for each person
 
+//Create a variable for meal with the parameters in the function tax, tip and diners into calculations.
+
+var meal = function(tax,tip,diners){
+ this.diners = diners;
+ this.tip = tip;
+ this.tax = tax;
+ this.total = 0;
+ this.subtotal = 0;
+ var self = this;//common hack used to pass this to subscopes.
+ this.calculatePrice = function(){
+   this.diners.map(function(diner){
+     diner.dishes.map(function(dish){
+       self.subtotal += dish.price;
+     });
+   });
+   this.total = this.subtotal + (this.tip * this.subtotal) + (this.tax * this.subtotal);
+ };
+};
 
 //Creating a variable for DINER (diner)
-var diner = function (customer, dishes){
-	this.customer = customer;
+var diner = function (name, dishes){
+	this.name = name;
 	this.dishes = dishes;
 };
 
 //Creating a variable for DISHES (dish)
-var dish = function(customer, price) {
-	this.customer = customer;
+var dish = function(name, price) {
+	this.name = name;
 	this.price = price;
 };
 
@@ -47,27 +65,12 @@ var Hieu = new diner('Hieu', [Noodles, Dumplings]);//Kung Fu Panda
 var Hanh = new diner('Hanh', [Pho, EggRolls]);//Likes multiple flavors and fried egg rolls.
 var Hong = new diner('Hong', [Stirfry, Banh_mi]);//Old School Food in Vietnam/China
 
-//Create a variable for meal with the parameters in the function tax, tip and diners into calculations.
-var meal = function(tax,tip,diners){
- this.diners = diners;
- this.tip = tip;
- this.tax = tax;
- this.total = 0;
- this.subtotal = 0;
- var self = this;
- this.calculatePrice = function(){
-   this.diners.map(function(diner){
-     diner.dishes.map(function(dish){
-       self.subtotal += dish.price;
-     });
-   });
-   this.total = this.subtotal + (this.tip * this.subtotal) + (this.tax * this.subtotal);
- };
-};
+
 //Here I make the calculations for the whole meal with all the subtotal(initial), tip percent, tax percent, and final total.
 //Current sales tax in California is 8% (0.08) and the required tips for any restaurant is 15% (0.15)
 meal = new meal(0.08,0.15,[Hieu,Hanh,Hong]);
 meal.calculatePrice();
+//Using console.log to show ALL the results
 console.log('Subtotal:','$',meal.subtotal, 'dollars');
 console.log('Tax:', meal.tax, '%');
 console.log('Tip:', meal.tip, '%');
